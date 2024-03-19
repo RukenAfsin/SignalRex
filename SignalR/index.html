@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>SignalR Example</title>
+  <!-- jQuery ve SignalR kütüphanelerinin yüklenmesi -->
+  <script src="jquery.min.js"></script>
+  <script src="signalr.min.js"></script>
+</head>
+<body>
+  <div id="situation" style="display: none;"></div>
+  <input type="text" id="txtMessage" />
+  <button id="btnSend">Send</button>
+  <div id="messageContainer"></div>
+
+  <script>
+    $(document).ready(() => {
+      const connection = new signalR.HubConnectionBuilder()
+        .withUrl("https://localhost:7130/myhub")
+        .withAutomaticReconnect([1000, 1000, 2000])
+        .build();
+
+      async function start() {
+        try {
+          await connection.start();
+        } catch (error) {
+          setTimeout(() => start(), 2000);
+        }
+      }
+      start();
+   
+    function animation (){
+      situation.fadeIn(2000, () => {
+          setTimeout(() => {
+            situation.fadeOut(2000);
+          }, 2000);
+        });
+    }
+ 
+      const situation = $("#situation");
+
+      connection.onreconnecting((error) => {
+        situation.css("background-color", "blue");
+        situation.css("color", "white");
+        situation.html("Connection establishing...");
+       animation();
+      });
+
+      connection.onreconnected((connectionId) => {
+        situation.css("background-color", "green");
+        situation.css("color", "white");
+        situation.html("Connection established...");
+        animation();
+      });
+
+      connection.onclose((connectionId) => {
+        situation.css("background-color", "red");
+        situation.css("color", "white");
+        situation.html("Connection can not established...");
+        animation();
+      });
+
+      connection.on("userJoined", connectionId=>{
+       situation.html(`${connectionId} connected.`)
+       situation.css("background-color", "green");
+
+       animation();
+      })
+      connection.on("userLeaved", connectionId=>{
+       situation.html(`${connectionId} departed.`)
+       situation.css("background-color", "red");
+       animation();
+      })
+
+    connection.on("clients", clientsData=>{
+      let text ="";
+    $.each(clientsData,(index, item)=>{
+      text+=`<li>${item}</li>`
+    })
+    $("#clients").html(text)
+    })
+      $("#btnSend").click(() => {
+        let message = $("#txtMessage").val(); // Input alanından mesajın alınması
+        connection
+          .invoke("SendMessageAsync", message) // Sunucuya mesajın gönderilmesi
+          .catch((error) =>
+            console.log(`Mesaj gönderilirken bir hata oluştu.${error}`)
+          );
+      });
+
+      connection.on("receiveMessage", (message) => {
+        $("#messageContainer").append(message + "<br>"); // Mesajın ekrana yazdırılması
+      });
+    });
+  </script>
+  <div>
+    <ul id="clients"></ul>
+  </div>
+</body>
+</html>
