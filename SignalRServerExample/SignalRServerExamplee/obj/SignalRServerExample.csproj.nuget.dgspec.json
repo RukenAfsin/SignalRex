@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\User\\Desktop\\SignalRex\\SignalRServerExample\\SignalRServerExamplee\\SignalRServerExample.csproj": {}
+    "C:\\Users\\User\\Desktop\\Applications\\SignalRex\\SignalRServerExample\\SignalRServerExamplee\\SignalRServerExample.csproj": {}
   },
   "projects": {
-    "C:\\Users\\User\\Desktop\\SignalRex\\SignalRServerExample\\SignalRServerExamplee\\SignalRServerExample.csproj": {
+    "C:\\Users\\User\\Desktop\\Applications\\SignalRex\\SignalRServerExample\\SignalRServerExamplee\\SignalRServerExample.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\User\\Desktop\\SignalRex\\SignalRServerExample\\SignalRServerExamplee\\SignalRServerExample.csproj",
+        "projectUniqueName": "C:\\Users\\User\\Desktop\\Applications\\SignalRex\\SignalRServerExample\\SignalRServerExamplee\\SignalRServerExample.csproj",
         "projectName": "SignalRServerExample",
-        "projectPath": "C:\\Users\\User\\Desktop\\SignalRex\\SignalRServerExample\\SignalRServerExamplee\\SignalRServerExample.csproj",
+        "projectPath": "C:\\Users\\User\\Desktop\\Applications\\SignalRex\\SignalRServerExample\\SignalRServerExamplee\\SignalRServerExample.csproj",
         "packagesPath": "C:\\Users\\User\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\User\\Desktop\\SignalRex\\SignalRServerExample\\SignalRServerExamplee\\obj\\",
+        "outputPath": "C:\\Users\\User\\Desktop\\Applications\\SignalRex\\SignalRServerExample\\SignalRServerExamplee\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
           "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"

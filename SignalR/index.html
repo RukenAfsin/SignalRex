@@ -9,6 +9,7 @@
   <script src="signalr.min.js"></script>
 </head>
 <body>
+  <div style="background-color: black; color: white;" id="connectionId"></div>
   <div id="situation" style="display: none;"></div>
   <input type="text" id="txtMessage" />
   <button id="btnSend">Send</button>
@@ -17,7 +18,7 @@
   <script>
     $(document).ready(() => {
       const connection = new signalR.HubConnectionBuilder()
-        .withUrl("https://localhost:7130/myhub")
+        .withUrl("https://localhost:7130/messagehub")
         .withAutomaticReconnect([1000, 1000, 2000])
         .build();
 
@@ -92,10 +93,16 @@
       connection.on("receiveMessage", (message) => {
         $("#messageContainer").append(message + "<br>"); // Mesajın ekrana yazdırılması
       });
+
+
+    connection.on("getConnectionId", connectionId=>{
+      $("#connectionId").html(`Connection Id: ${connectionId}`)
+    })
+
     });
   </script>
   <div>
-    <ul id="clients"></ul>
+    <!-- <ul id="clients"></ul> -->
   </div>
 </body>
 </html>
