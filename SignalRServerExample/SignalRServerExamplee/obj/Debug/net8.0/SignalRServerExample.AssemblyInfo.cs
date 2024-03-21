@@ -14,7 +14,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("SignalRServerExample")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+392f3fe2cf3d69222acd4ead8b414c52e2fbc62e")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+701d5765eb9e1afa6076114b3e2afb2969df23d3")]
 [assembly: System.Reflection.AssemblyProductAttribute("SignalRServerExample")]
 [assembly: System.Reflection.AssemblyTitleAttribute("SignalRServerExample")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]

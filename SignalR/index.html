@@ -10,8 +10,17 @@
 </head>
 <body>
   <div style="background-color: black; color: white;" id="connectionId"></div>
+  <input type="radio" name="group" value="A">A
+  <input type="radio" name="group" value="B">B
+  <input type="radio" name="group" value="C">C
+  <button id="btnEnterGroup"> Enter the Group</button>
   <div id="situation" style="display: none;"></div>
-  <input type="text" id="txtMessage" />
+  <br>
+  <input type="text" id="txtMessage" placeholder="Message"/><br>
+  <input type="text" id="txtGroups" placeholder="Groups"/>
+  <br>
+  <textarea id="connectionIds" cols="30" rows="10" placeholder="Connection Id"></textarea>
+  </body>
   <button id="btnSend">Send</button>
   <div id="messageContainer"></div>
 
@@ -83,11 +92,16 @@
     })
       $("#btnSend").click(() => {
         let message = $("#txtMessage").val(); // Input alanından mesajın alınması
-        connection
-          .invoke("SendMessageAsync", message) // Sunucuya mesajın gönderilmesi
+        let connectionIds=$("#connectionIds").val().split(",")
+        let groups=$("#txtGroups").val().split(",")
+        // connection
+        //   .invoke("SendMessageAsync", message,connectionIds) // Sunucuya mesajın gönderilmesi
+        //   .catch((error) =>
+        //     console.log(`Mesaj gönderilirken bir hata oluştu.${error}`));
+            connection
+          .invoke("SendMessageAsync", message,groups[0]) // Sunucuya mesajın gönderilmesi
           .catch((error) =>
-            console.log(`Mesaj gönderilirken bir hata oluştu.${error}`)
-          );
+            console.log(`Mesaj gönderilirken bir hata oluştu.${error}`));
       });
 
       connection.on("receiveMessage", (message) => {
@@ -95,14 +109,19 @@
       });
 
 
+      let _connectionId="";
     connection.on("getConnectionId", connectionId=>{
+      _connectionId=connectionId;
       $("#connectionId").html(`Connection Id: ${connectionId}`)
     })
-
+     
+    $("#btnEnterGroup").click(()=>{
+   let groupName=$("input[name=group]:checked").val()
+   connection.invoke("addGroup", _connectionId,groupName).catch(error=>
+    console.log(`An error occurred while message sending.${error}`)
+   )
+    })
     });
   </script>
-  <div>
-    <!-- <ul id="clients"></ul> -->
-  </div>
 </body>
 </html>
