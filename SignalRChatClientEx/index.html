@@ -72,6 +72,22 @@
           _message.find("h5")[1].innerHTML="You"
           $(".messages").append(_message)
         });
+
+        $("#btnOdaOlustur".click(()=>{
+          connection.invoke("AddGroup", $("#txtOdaAdi").val())
+        }))
+
+        connection.on("groups", groups=>{
+         console.log(groups)
+         
+         let options=""
+        $.each(groups,(index,item)=>{
+      options += `<option value="${item.groupName}">${item.groupName}</option>`
+        })
+
+        $(".rooms").append(options)
+
+        })
       });
     </script>
   </head>
@@ -86,15 +102,15 @@
           <div class="col-md-3">
             <!-- Oda -->
             <input class="form-control form-control-lg disabled" type="text"
-            placeholder-"Oda adı">
+            placeholder="Oda adı" id="txtOdaAdi" >
 
-            <button type="button" class="btn btn-info rightButton disabled">
+            <button type="button" class="btn btn-info rightButton disabled" id="btnOdaOlustur">
               Oda Oluştur
             </button>
             <select
               size="5"
               style="width: 100%"
-              class="form-select disabled"
+              class="form-select disabled rooms"
               multiple
             >
               <option selected value="-1">0dalar</option>

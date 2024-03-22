@@ -36,6 +36,12 @@ namespace SignalRChatEx.Hubs
 
             }
         }
+        public async Task AddGroup(string groupName)
+        {
+           await  Groups.AddToGroupAsync(Context.ConnectionId, groupName);
+            GroupSource.Groups.Add(new Group { GroupName = groupName });
 
+            await Clients.All.SendAsync("groups", GroupSource.Groups);
+        }
     }
 }
