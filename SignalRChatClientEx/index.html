@@ -77,10 +77,9 @@
           connection.invoke("AddGroup", $("#txtOdaAdi").val())
         }))
 
-        connection.on("groups", groups=>{
-         console.log(groups)
-         
-         let options=""
+        connection.on("groups", groups=>{   
+          $(".rooms") .html("")  
+         let options=`<option selected value="-1">0dalar</option>`
         $.each(groups,(index,item)=>{
       options += `<option value="${item.groupName}">${item.groupName}</option>`
         })
@@ -97,6 +96,14 @@
 
           connection.invoke("AddClientToGroup", groupNames)
         })
+
+   $(".rooms").change(function(){
+    let groupName= $(this).val()
+    connection.invoke("GetClientToGroup", groupName[0])
+   })
+
+
+
       });
     </script>
   </head>
