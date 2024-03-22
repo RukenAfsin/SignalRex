@@ -21,5 +21,20 @@ namespace SignalRChatEx.Hubs
             await Clients.All.SendAsync("clients",ClientSource.Clients);
         }
 
+        public async Task SendMessageAsync(string message, string clientName )
+        {
+            clientName = clientName.Trim();
+            if(clientName=="Tümü")
+            {
+                await Clients.Others.SendAsync("receiveMessage", message);
+            }
+            else
+            {
+                Client client = ClientSource.Clients.FirstOrDefault(c => c.NickName == clientName);
+                await Clients.Client(client.ConnectionId).SendAsync("receiveMessage", message);
+
+            }
+        }
+
     }
 }
