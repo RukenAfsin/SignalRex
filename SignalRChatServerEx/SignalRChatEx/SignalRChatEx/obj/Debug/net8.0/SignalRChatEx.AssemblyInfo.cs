@@ -14,7 +14,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("SignalRChatEx")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+057c7a7b78974b95d29634ddb3d26ed3594356fc")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+0512891a16835c558248f52c4c9167f8c3457daf")]
 [assembly: System.Reflection.AssemblyProductAttribute("SignalRChatEx")]
 [assembly: System.Reflection.AssemblyTitleAttribute("SignalRChatEx")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]

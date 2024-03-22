@@ -1,4 +1,5 @@
 <html>
+  <br>
 <head>
 <script src="node_modules/@microsoft/signalr/dist/browser/signalr.min.js"></script>
 <script src="node_modules/jquery/dist/jquery.min.js"></script>
@@ -17,7 +18,7 @@ $(document).ready(()=>{
   connection.start()
 
   $(".disabled").attr("disabled", "disabled");
-  $(".users").click(function(){
+  $("body").on("click",".users",function(){
     $(".users").each((index,item)=>{
       item.classList.remove("active")
     })
@@ -37,7 +38,19 @@ $("#clientDurumMesajlari").fadeIn(2000, ()=>{
   },2000)
 })
 })
-})
+
+
+  connection.on("clients",clients=>{
+    $("#_clients").html("")
+    $.each(clients, (index, item)=>{
+    const user = $(".users").first().clone()
+    user.removeClass("active")
+    user.html(item.nickName)
+    $("#_clients").append(user)
+
+      })
+    })
+  })
 </script>
 </head>
 
@@ -66,19 +79,14 @@ $("#clientDurumMesajlari").fadeIn(2000, ()=>{
         
         <!-- Clientlar -->
         
-        <div class="list-group">
-        
-        <a class="list-group-item list-group-item-action users active">
-        
-        Tümü
-        
-        <a class="list-group-item list-group-item-action users" aria-current="true">
-        
-        Cras justo odio
-        
+        <div class="list-group clients">       
+        <a class="list-group-item list-group-item-action users active">       
+        Tümü   
         </a>
-        
-        </a> </div>
+        <div id="_clients">
+
+        </div>
+       </div>
         
         <!-- Clientlar -->
         
