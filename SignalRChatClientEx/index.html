@@ -86,7 +86,16 @@
         })
 
         $(".rooms").append(options)
+        })
 
+        $("#btnOdalarGir").click(()=>{
+
+        let groupNames=[];
+        $(".rooms option:selected").map((i,e)=>{
+        groupNames.push(e.innerHTML)
+        })
+
+          connection.invoke("AddClientToGroup", groupNames)
         })
       });
     </script>
@@ -116,7 +125,7 @@
               <option selected value="-1">0dalar</option>
             </select>
 
-            <button type="button" class="btn btn-primary rightButton disabled">
+            <button type="button" class="btn btn-primary rightButton disabled" id="btnOdalaraGir">
               Secili Odalara Gir
             </button>
 
@@ -148,7 +157,7 @@
             <textarea
               class="form-control"
               style="margin-top: 5px"
-              placeholder="fletilecek mesajı buraya giriniz."
+              placeholder="iletilecek mesajı buraya giriniz."
               rows="3"
             ></textarea>
 
