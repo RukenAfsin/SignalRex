@@ -15,7 +15,7 @@ namespace SignalRChatEx.Hubs
                 NickName = nickName
             };
 
-            ClientSource.Clients.Add(client);
+          ClientSource.Clients.Add(client);
           await   Clients.Others.SendAsync("clientJoined", nickName);
 
             await Clients.All.SendAsync("clients",ClientSource.Clients);
